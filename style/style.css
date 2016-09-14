@@ -1,0 +1,31 @@
+#app {
+	position: absolute;
+	height: 100%;
+}
+
+.add_Bar {
+	width: 100%;
+	height: 3%;
+}
+
+.nav>li>a {
+	padding: 10px 3px;
+}
+
+@media (min-width: 800px) {
+.my_custom_container {
+	position: absolute;
+    width: 20%;
+    height: 97%;
+    padding-left: 1px;
+    padding-right: 0px;
+    border-right: 1px solid #ddd;
+}}
+
+#map {
+	position: absolute;
+	left: 20%;
+	width: 80%;
+	height: 97%;
+	border: 1px solid #ddd;
+}
