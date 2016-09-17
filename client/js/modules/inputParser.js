@@ -1,23 +1,39 @@
 angular.module("inputParser", [])
-.factory('parser_factory', function() {
+.factory('us_address_parser', function() {
 	var input_object = (function() {
-		var input_string = "";
+		var address = "";
+		var city = "";
+		var state = "";
+		var zipCode = "";
 
 		return {
-			init: function(input) {
-				this.input_string = input;
-				return this;
+			preprocess: function(input) {
+				return input.trim().toLowerCase();
 			},
-			trim: function() {
-				this.input_string = this.input_string.trim();
-				return this;
+			verify: function(input) {
+				var addr_regex = /^([^,]+), ([a-z]+), ([a-z]{2}) ((\d{5}))$/;
+				regex_result = addr_regex.exec(input);
+				if (regex_result) {
+					address = regex_result[1];
+					city = regex_result[2];
+					state = regex_result[3];
+					zipCode = regex_result[4];
+
+					return true;
+				}
+				return false;
 			},
-			lower: function() {
-				this.input_string = this.input_string.toLowerCase();
-				return this;
+			getAddress: function(input) {
+				return address;
 			},
-			value: function() {
-				return this.input_string;
+			getCity: function(input) {
+				return city;
+			},
+			getState: function(input) {
+				return state;
+			},
+			getZipCode: function(input) {
+				return zipCode;
 			}
 		};
 	}());
