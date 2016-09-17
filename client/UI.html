@@ -4,7 +4,9 @@
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/modules/inputParser.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/houseAddingController.js"></script>
 		<script src="js/mapController.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		
@@ -13,14 +15,14 @@
 	</head>
 	<body ng-app="houseTracking">
 		<div id="app">
-			<div id="addBar" class="add_bar">
+			<div id="addBar" class="add_bar" ng-controller="houseAddingController">
 				<div class="input-group">
 			  		<div class="input-group-addon">
 						<span class="glyphicon glyphicon-home"></span> 
 			  		</div>
-			  		<input id="address" type="text" placeholder="Input Address" class="form-control input-sm" />
+			  		<input id="address" type="text" placeholder="Input Address" class="form-control input-sm" ng-model="address"/>
 			  		<span class="input-group-btn">
-						<button id="addAddr" type="button" class="btn btn-success btn-sm">Add <span class="glyphicon glyphicon-plus"></span></button>
+						<button id="addAddr" type="button" class="btn btn-success btn-sm" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
 			  		</span>
 			  	</div>
 			</div>
