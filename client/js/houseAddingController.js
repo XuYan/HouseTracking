@@ -12,6 +12,7 @@ houseTracking.controller("houseAddingController", function($scope, $http, us_add
 				.then(
 					function onRequestSucceed(response) {
 						console.log("Request succeed");
+						console.log(response.data);
 					},
 					function onRequestFailed(response) {
 						console.log("Request failed");
