@@ -29,6 +29,4 @@ houseTracking.controller('mapController', function mapController($scope) {
   }
   
   map_base.initMap().addMarker();
-
-  //AIzaSyCvCXMnA1WTo5rCY-PpvF5xJWRK-XLs_6k
 });
