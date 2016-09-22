@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css">
 <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
+
 <table data-toggle="table"
-       data-url=""
-       data-sort-name="address"
+       data-url="http://127.0.0.1:3000/house"
+       data-sort-name="price"
        data-sort-order="desc">
     <thead>
     <tr>
-        <th data-field="address" 
+        <th data-field="price" 
             data-sortable="true">
                 Addr
         </th>
@@ -14,14 +15,14 @@
             data-sortable="true">
                 Year
         </th>
-        <th data-field="area" 
+        <!--<th data-field="area" 
             data-sortable="true">
                 Sqf
         </th>
         <th data-field="link" 
             data-sortable="false">
                 link
-        </th>
+        </th>-->
     </tr>
     </thead>
 </table>
