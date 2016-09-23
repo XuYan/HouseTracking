@@ -29,14 +29,25 @@ houseTracking.controller('paneController', function paneController($scope, event
     var regions = Object.keys(house_data);
     
     $scope.house_data = house_data;
+
+    $scope.is_pane_open = true; // By default, open property list pane
+    
+    $scope.getToggleButtonStyle = function() {
+      return this.is_pane_open ? "fa-chevron-left" : "fa-chevron-right";
+    };
+
+    $scope.getPaneStyle = function() {
+      return this.is_pane_open ? "" : "my_custom_container_hide";
+    };
     
     setupEventListeners();
 
     function setupEventListeners() {
       var toggle_button = $('#paneToggler');
       event_manager.register(toggle_button, "click", function() {
-        console.log("Clicked");
+        $scope.$apply(function() {
+          $scope.is_pane_open = !$scope.is_pane_open; // flip pane state
+        });
       });
     }
-
 });

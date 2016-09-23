@@ -28,13 +28,15 @@
 			  		</div>
 			  		<input id="address" type="text" placeholder="Input Address" class="form-control input-sm" ng-model="address"/>
 			  		<span class="input-group-btn">
-						<button id="addAddr" type="button" class="btn btn-success btn-sm" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
+						<button id="addAddr" type="button" class="btn btn-success btn-sm" ng-click="add()">
+							Add	<span class="glyphicon glyphicon-plus"></span>
+						</button>
 			  		</span>
 			  	</div>
 			</div>
 		
 			<!-- The property list pane on the left -->
-			<div class="container my_custom_container" ng-controller="paneController" ng-model="house_data">
+			<div class="container my_custom_container" ng-class="getPaneStyle()" ng-controller="paneController" ng-model="house_data">
 			  	<ul class="nav nav-tabs">
 			  		<li ng-class="{active: $index == 0}" ng-repeat="(region, house_list) in house_data">
 			  			<a data-toggle="tab">{{region}}</a>
@@ -45,7 +47,7 @@
 					<list></list>
 				</div>
 				<div id="paneToggler">
-	  				<i class="fa fa-chevron-left"></i>
+	  				<i ng-class="getToggleButtonStyle()" class="fa"></i>
 	  			</div>
 	  		</div>
 	  		

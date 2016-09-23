@@ -23,6 +23,10 @@
     border-right: 1px solid #ddd;
 }}
 
+.my_custom_container_hide {
+	left: -18%;
+}
+
 #map {
 	position: absolute;
 	left: 20%;
