@@ -1,4 +1,4 @@
-var houseTracking = angular.module('houseTracking', ['inputParser', 'requestCreator'])
+var houseTracking = angular.module('houseTracking', ['inputParser', 'requestCreator', "eventManager"])
   .config(function() {
 
   })

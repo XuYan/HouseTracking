@@ -30,3 +30,18 @@
 	height: 97%;
 	border: 1px solid #ddd;
 }
+
+#paneToggler {
+	position: relative;
+	left: 95%;
+	bottom: 55%;
+	width: 15px;
+	height: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+#paneToggler:hover {
+	background-color: rgb(230, 230, 230);
+}

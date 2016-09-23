@@ -9,13 +9,15 @@
 
 		<script src="js/modules/inputParser.js"></script>
 		<script src="js/modules/requestCreator.js"></script>
+		<script src="js/modules/eventManager.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/houseAddingController.js"></script>
 		<script src="js/paneController.js"></script>
 		<script src="js/mapController.js"></script>
 		
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="style/style.css" />
+		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
 	</head>
 	<body ng-app="houseTracking">
 		<div id="app">
@@ -31,6 +33,7 @@
 			  	</div>
 			</div>
 		
+			<!-- The property list pane on the left -->
 			<div class="container my_custom_container" ng-controller="paneController" ng-model="house_data">
 			  	<ul class="nav nav-tabs">
 			  		<li ng-class="{active: $index == 0}" ng-repeat="(region, house_list) in house_data">
@@ -41,8 +44,11 @@
 				<div class="tab-content">
 					<list></list>
 				</div>
+				<div id="paneToggler">
+	  				<i class="fa fa-chevron-left"></i>
+	  			</div>
 	  		</div>
-
+	  		
 	  		<div id="map" ng-controller="mapController" />
 		</div>
 	</body>

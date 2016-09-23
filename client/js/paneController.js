@@ -1,4 +1,4 @@
-houseTracking.controller('paneController', function paneController($scope) {
+houseTracking.controller('paneController', function paneController($scope, event_manager) {
   // TODO: This list is hard coded temporarily
   var house_data = {
     "redmond": [{
@@ -28,9 +28,15 @@ houseTracking.controller('paneController', function paneController($scope) {
     };
     var regions = Object.keys(house_data);
     
-    // $scope.tabIndex = regions.length > 0 ? 0 : -1;
     $scope.house_data = house_data;
     
-    
+    setupEventListeners();
+
+    function setupEventListeners() {
+      var toggle_button = $('#paneToggler');
+      event_manager.register(toggle_button, "click", function() {
+        console.log("Clicked");
+      });
+    }
 
 });
