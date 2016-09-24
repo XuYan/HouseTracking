@@ -29,6 +29,6 @@ houseTracking.controller('paneController', function paneController($scope, id_di
     var regions = Object.keys(house_data);
     
     $scope.house_data = house_data;
-    
+    $scope.getID = id_distributor.getID;
 
 });

@@ -41,7 +41,7 @@
 				<!-- The property list pane on the left -->
 				<div class="container my_custom_container" ng-class="getPaneStyle()" ng-controller="paneController" ng-model="house_data">
 			  		<ul class="nav nav-tabs">
-			  			<li ng-class="{active: $index == 0}" ng-repeat="(region, house_list) in house_data">
+			  			<li assign-id get-id='::getID()' ng-class="{active: $index == 0}" ng-repeat="(region, house_list) in house_data">
 			  				<a data-toggle="tab">{{region}}</a>
 			  			</li>
 					</ul>
