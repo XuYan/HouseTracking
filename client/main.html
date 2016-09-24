@@ -8,10 +8,12 @@
 			type="text/javascript"></script>
 
 		<script src="js/modules/inputParser.js"></script>
+		<script src="js/modules/idDistributor.js"></script>
 		<script src="js/modules/requestCreator.js"></script>
 		<script src="js/modules/eventManager.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/houseAddingController.js"></script>
+		<script src="js/paneMapController.js"></script>
 		<script src="js/paneController.js"></script>
 		<script src="js/mapController.js"></script>
 		
@@ -35,23 +37,25 @@
 			  	</div>
 			</div>
 		
-			<!-- The property list pane on the left -->
-			<div class="container my_custom_container" ng-class="getPaneStyle()" ng-controller="paneController" ng-model="house_data">
-			  	<ul class="nav nav-tabs">
-			  		<li ng-class="{active: $index == 0}" ng-repeat="(region, house_list) in house_data">
-			  			<a data-toggle="tab">{{region}}</a>
-			  		</li>
-				</ul>
-				<br>
-				<div class="tab-content">
-					<list></list>
-				</div>
-				<div id="paneToggler">
-	  				<i ng-class="getToggleButtonStyle()" class="fa"></i>
+			<div ng-controller="paneMapController">
+				<!-- The property list pane on the left -->
+				<div class="container my_custom_container" ng-class="getPaneStyle()" ng-controller="paneController" ng-model="house_data">
+			  		<ul class="nav nav-tabs">
+			  			<li ng-class="{active: $index == 0}" ng-repeat="(region, house_list) in house_data">
+			  				<a data-toggle="tab">{{region}}</a>
+			  			</li>
+					</ul>
+					<br>
+					<div class="tab_content">
+						<list></list>
+					</div>
+					<div id="paneToggler">
+	  					<i class="fa" ng-class="getToggleButtonStyle()"></i>
+	  				</div>
 	  			</div>
-	  		</div>
 	  		
-	  		<div id="map" ng-controller="mapController" />
+	  			<div id="map" class="map" ng-class="getMapFrameStyle()" ng-controller="mapController" />
+			</div>
 		</div>
 	</body>
 </html>

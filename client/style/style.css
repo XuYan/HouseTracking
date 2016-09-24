@@ -21,29 +21,48 @@
     padding-left: 1px;
     padding-right: 0px;
     border-right: 1px solid #ddd;
+    left: 0%;
+    transition-property: left;
+    transition-duration: .4s;
 }}
 
 .my_custom_container_hide {
 	left: -18%;
 }
 
-#map {
+.tab_content {
+	position: absolute;
+	width: 100%;
+}
+
+.map {
 	position: absolute;
 	left: 20%;
 	width: 80%;
 	height: 97%;
 	border: 1px solid #ddd;
+	transition-property: left, width;
+	transition-duration: .4s;
+}
+
+.map_extend {
+	left: 2%;
+	width: 98%;
 }
 
 #paneToggler {
-	position: relative;
+	position: absolute;
 	left: 95%;
-	bottom: 55%;
+	bottom: 40%;
 	width: 15px;
-	height: 25px;
+	height: 125px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	cursor: pointer;
+}
+
+#paneToggler>i {
+	line-height: 115px;
 }
 
 #paneToggler:hover {
