@@ -7,7 +7,7 @@ module.exports = {
 
 		// TODO: Field shouldn't be hardcoded
 		var param_obj = {
-			"zws-id": "YOUR_ID",
+			"zws-id": "X1-ZWz1ffxsu52brf_2kpit",
 			"address": request.query['address'],
 			"citystatezip": request.query['city'] + " " + request.query['state']
 		}

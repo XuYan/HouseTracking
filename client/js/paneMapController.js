@@ -16,7 +16,7 @@ houseTracking.controller('paneMapController', function paneMapController($scope,
 
   function setupEventListeners() {
     var toggle_button = $('#paneToggler');
-    event_manager.register(toggle_button, "click", function() {
+    event_manager.register(toggle_button, "click", function onToggleButtonClicked() {
       $scope.$apply(function() {
         $scope.is_pane_open = !$scope.is_pane_open; // flip pane state
       });

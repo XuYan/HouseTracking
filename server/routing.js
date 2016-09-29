@@ -19,15 +19,19 @@ app.use(function(req, res, next) {
   next();
 });
 
-// Connect to MongoDB
+// mongoose's default promise library (mpromise) is deprecated. Here I use native ES6 promises instead
+mongoose.Promise = global.Promise;
+// Connect to MongoDB: database: 'house_tracking'
 mongoose.connect('mongodb://localhost/house_tracking');
-mongoose.connection.once('open', function() {
-	// Load the models.
+var connection = mongoose.connection;
+connection.on('error', console.error.bind(console, 'Mongodb connection error:'));
+connection.once('open'/*connection established*/, function() {
+	// Load the models
 	app.models = require('./model/model_index');
 
-	// Load the routes.
+	// Load the routes
 	var routes = require('./routes');
-	_.each(routes, function(controller, route) {
+	_.each(routes, function(controller/*value*/, route/*key*/) {
 		app.use(route, controller(app, route));
 	});
 

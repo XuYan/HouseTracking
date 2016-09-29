@@ -1,25 +1,47 @@
-var houseTracking = angular.module('houseTracking', ['inputParser', 'requestCreator', "eventManager", "IDDistributor"])
+var houseTracking = angular.module('houseTracking', ['inputParser', 'requestCreator', "eventManager", "IDPool"])
   .config(function() {
 
   })
-  .directive('list', function() {
-  	return {
-    	restrict: 'E',
-  		templateUrl: '../view_snippets/property_list_pane/property_list_pane.html'
-  	};
+  .directive('assignId', ["id_distributor", function(id_distributor) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attributes) {
+        var id = id_distributor.getID();
+        element.attr("id", id);
+      }
+    }
+  }])
+  .directive('pane', function() {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {},
+      controller: 'paneController'/*should be quoted*/,
+      templateUrl: '../view_snippets/property_list_pane/pane.html'
+    };
   })
-  .directive('assignId', function() {
-  	return {
-  		restrict: 'A',
-  		scope: {
-  			id: '&getId'
-  		},
-  		link: function(scope, element, attributes) {
-  			var id = scope.id();
-  			element.attr("id", id);
-  			element.on('click', function(event) {
-  				window.alert(element.attr('id'));
-  			});
-  		}
-  	};
+  .directive('tab', function() {
+    return {
+      require: '^^pane',
+      restrict: 'E',
+      transclude: true,
+      scope: {
+        title: '@'
+      },
+      link: function(scope, element, attrs, paneCtrl) {
+        paneCtrl.addTab(scope);
+      },
+      templateUrl: '../view_snippets/property_list_pane/tab.html'
+    };
+  })
+  .directive('list', function() {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {
+        region: '@'
+      },
+      controller: 'listController',
+      templateUrl: '../view_snippets/property_list_pane/list.html'
+    };
   });

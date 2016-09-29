@@ -1,0 +1,33 @@
+<!-- Reference: http://www.codeproject.com/Articles/987311/Collapsible-Responsive-Master-Child-Grid-Using-Ang -->
+<div ng-repeat="house in houses">
+    <div class="row panel panel-body">
+        <div class="col-xs-1">
+            <div class="handpointer glyphicon glyphicon-chevron-right"
+             data-ng-click="collapse($event)" data-target="#view_{{product.productid}}"
+             data-toggle="collapse" aria-expanded="false"
+             aria-controls="view_{{product.productid}}"
+                 data-ng-if="product.items!=null">
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-12" data-ng-bind="house.street"></div>
+        <div class="col-sm-3 col-xs-12" data-ng-bind="house.price"></div>
+    </div>
+    <div class="collapse" id="view_{{product.productid}}" data-ng-if="product.items!=null">
+        <div class="col-sm-offset-1">
+            <table class="table-condensed responsive-table">
+                <tr class="row">
+                    <th>#ID</th>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Qty</th>
+                </tr>
+                <tr class="row" ng-repeat="item in product.items">
+                    <td data-ng-bind="item.prodDetailId"></td>
+                    <td data-ng-bind="item.prodDetailDesc"></td>
+                    <td data-ng-bind="item.amount | currency"></td>
+                    <td data-ng-bind="item.qty"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

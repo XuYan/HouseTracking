@@ -3,7 +3,7 @@ houseTracking.controller("houseAddingController", function($scope, $http, us_add
 	$scope.add = function(event) {
 		var addr_str = addr_parser.preprocess($scope.address);
 		var addr_obj = addr_parser.verify(addr_str);
-		var base_url = "http://localhost:3000/getPropertyDetail"
+		var base_url = "http://localhost:3000/houses/detail"
 		if (addr_obj) {
 			var request_url = request_creator.create(base_url, addr_obj);
 			console.log(request_url);

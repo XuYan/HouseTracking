@@ -68,3 +68,38 @@
 #paneToggler:hover {
 	background-color: rgb(230, 230, 230);
 }
+
+
+.handpointer {
+
+    cursor:pointer;
+}
+.responsive-table {
+  color: #000;
+  overflow: hidden;
+  width:100%;
+  border-radius: 5px;
+  background-color:#eaebee;
+}
+.responsive-table tr {
+      border-bottom: 1px solid #dcdfe5;
+}
+.responsive-table th,.responsive-table td {
+    padding-left: 15px !important;
+}
+
+.responsive-table tr:last-child {
+    border-bottom: 0px;
+}
+a:focus {
+  -moz-outline-style: none;
+}
+
+a, a:active, a:focus {
+outline: none;
+}
+
+.bgOrg {
+    background-color:#fa902b;
+    color:#fff;
+}

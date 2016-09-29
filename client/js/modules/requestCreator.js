@@ -5,9 +5,12 @@
 		var req_creator_object = (function() {
 			return {
 				create: function(base_url, param_obj) {
+						if (!param_obj) {
+							param_obj = {};
+						}
+						console.log("Request Params: " + param_obj);
 						var request_url = base_url;
 						var param_names = Object.keys(param_obj);
-						console.log(param_obj);
 						for (let i = 0; i < param_names.length; i++) {
 							var delimeter = (i == 0) ? "?" : "&";
 							var param_name = param_names[i];

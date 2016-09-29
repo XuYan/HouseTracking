@@ -1,7 +1,15 @@
 var mongoose = require('mongoose');
 
-// Create the schema of "house_tracking" database ("house" collection)
+// Create the schema for documents in "house_tracking" database
 var house_schema = new mongoose.Schema({
+  street: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
   year: {
     type: Number,
     required: true
@@ -10,27 +18,31 @@ var house_schema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  price_per_sqf: {
-  	type: Number,
-  	required: true
-  },
   sqf: {
   	type: Number,
   	required: true
   },
-  BB: {
+  bed_bath: {
   	type: String,
   	required: true
   },
+  longitude: {
+    type: Number,
+    required: true
+  },
+  latitude: {
+    type: Number,
+    required: true
+  },
   distance_to_MS: {
   	type: Number,
-  	required: true
+  	required: false
   },
   distance_to_G: {
   	type: Number,
-  	required: true
+  	required: false
   }
 });
 
-// Export the model schema.
-module.exports = house_schema;
+// Export house model
+module.exports = mongoose.model('house'/*collection: 'houses'*/, house_schema);
