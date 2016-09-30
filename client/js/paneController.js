@@ -1,15 +1,19 @@
-houseTracking.controller('paneController', ['$scope', function paneController($scope) {
-  $scope.property_data = ["redmond", "bellevue"];
-  $scope.my_array = [1,2,3];
-
+houseTracking.controller('paneController', function paneController($scope) {
   var tabs = $scope.tabs = [];
+  var current_tab = undefined;
 
   $scope.select = function(tab) {
-    angular.forEach(tabs, function(tab) {
-      tab.selected = false;
-    });
+    if (current_tab !== tab) {
+      console.log("Tab changes...");
+      current_tab = tab;
+      
+      angular.forEach(tabs, function(tab) {
+        tab.selected = false;
+      });
 
-    tab.selected = true;
+      tab.selected = true;
+      $scope.$broadcast("TabChange");
+    }
   };
 
   this.addTab = function(tab) {
@@ -18,4 +22,4 @@ houseTracking.controller('paneController', ['$scope', function paneController($s
     }
     tabs.push(tab);
   };
-}]);
+});

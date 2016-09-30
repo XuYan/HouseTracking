@@ -50,6 +50,10 @@
 	width: 98%;
 }
 
+.house_detail_table {
+	margin-bottom: 20px;
+}
+
 #paneToggler {
 	position: absolute;
 	left: 95%;
