@@ -8,6 +8,26 @@ houseTracking.controller('listController', function listController($scope, $http
     event.stopPropagation();
 	};
 
+  $scope.deleteHouse = function(index) {
+    var house_to_delete = $scope.houses.splice(index, 1)[0];
+    removeHouseRecord(house_to_delete._id);
+    event.stopPropagation();
+  }
+
+  function removeHouseRecord(house_id) {
+    var delete_req_url = "http://127.0.0.1:3000/houses/" + $scope.region + "/" + house_id;
+    $http.delete(delete_req_url)
+      .then(function deleteSuccessCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(response.message);
+      }, function deleteErrorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log("Error when deleting house from DB: " + response.message);
+    });
+  }
+
   $scope.onItemSelect = function(index) {
     var house = $scope.houses[index];
     $scope.active_index = index;
@@ -16,6 +36,13 @@ houseTracking.controller('listController', function listController($scope, $http
 
   $scope.$on('TabChange', function (event, data) {
     $scope.active_index = -1;
+  });
+
+  $scope.$on("onNewHouseAdded", function(event, data) {
+    var new_house = data.house;
+    if (new_house["city"] === $scope.region) {
+      $scope.houses.push(data.house);  
+    }
   });
 
 	var request_url = request_creator.create("http://127.0.0.1:3000/houses/" + $scope.region);

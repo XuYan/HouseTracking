@@ -9,7 +9,12 @@
             </div>
         </div>
         <div class="col-sm-8 col-xs-12" data-ng-bind="house.street"></div>
-        <button id="house_delete_btn" type="button" class="btn btn-danger btn-xs" ng-show="$index === active_index">Delete</button>
+        <button id="house_delete_btn" type="button"
+            class="btn btn-danger btn-xs house-delete-btn"
+            ng-click="deleteHouse($index)"
+            ng-show="$index === active_index">
+            Delete
+        </button>
     </div>
     <div class="collapse col-sm-11 house_detail_table" id="view_{{house._id}}">
         <div class="col-sm-offset-1">

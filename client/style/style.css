@@ -54,6 +54,10 @@
 	margin-bottom: 20px;
 }
 
+.house-delete-btn {
+	line-height: 11px;
+}
+
 #paneToggler {
 	position: absolute;
 	left: 95%;

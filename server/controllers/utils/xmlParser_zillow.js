@@ -2,7 +2,7 @@
 	"use strict";
 	function getPrice(data_obj) {
 		if (data_obj.lastSoldPrice) {
-			return result.lastSoldPrice[0]._;/*'_' to get value; '$' to get attribute obj*/
+			return data_obj.lastSoldPrice[0]._;/*'_' to get value; '$' to get attribute obj*/
 		}
 		return data_obj.zestimate[0].amount[0]._;
 	}

@@ -26,7 +26,8 @@ module.exports = function(app, route) {
 					console.log("Fail to save the new house document: " + err);
 					res.send(err);
 				}
-				res.json({ message: 'New house created!' });
+				console.log("New document is created and saved");
+				res.send(new_document);
 			});
 		}
 
@@ -49,8 +50,17 @@ module.exports = function(app, route) {
 	});
 
 	router.delete('/:region/:id', function(req, res, next) {
-		console.log("/:region/:id");
-		next();
+		var city = req.params.region;
+		var house_id = req.params.id;
+		console.log("Deleting from DB: " + city + "_" + house_id);
+
+		// Find a matching document and remove it immediately
+		house_model.findByIdAndRemove({_id: house_id}, function(err) {
+			if (err) {
+				res.status(400).send({message: house_id + " deletion fails"});
+			}
+			res.status(200).send({message: house_id + " is removed from DB successfully"});
+		});
 	});
 
 	function createDocument(house_detail) {

@@ -1,4 +1,4 @@
-houseTracking.controller("houseAddingController", function($scope, $http, us_address_parser, request_creator) {
+houseTracking.controller("houseAddingController", function($rootScope, $scope, $http, us_address_parser, request_creator) {
 	var addr_parser = us_address_parser;
 	$scope.add = function(event) {
 		var addr_str = addr_parser.preprocess($scope.address);
@@ -12,7 +12,9 @@ houseTracking.controller("houseAddingController", function($scope, $http, us_add
 				.then(
 					function onRequestSucceed(response) {
 						console.log("Request succeed");
-						console.log(response.data);
+						$rootScope.$broadcast("onNewHouseAdded", {
+							"house": response.data
+						});
 					},
 					function onRequestFailed(response) {
 						console.log("Request failed");
