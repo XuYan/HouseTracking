@@ -31,7 +31,24 @@ houseTracking.controller('listController', function listController($scope, $http
   $scope.onItemSelect = function(index) {
     var house = $scope.houses[index];
     $scope.active_index = index;
-    console.log("onItemSelected");
+    var data_on_map = getDataForMap(house);
+  }
+
+  function getDataForMap(house) {
+    var url = request_creator.create("http://127.0.0.1:3000/others/", {
+      longitude: house.longitude,
+      latitude: house.latitude
+    });
+
+    $http.get(url)
+      .then(
+        function onNearbyDataObtained(response) {
+          console.log("HAHAHHA");
+          console.log(response);
+        },
+        function onNearbyDataFailed(response) {
+          console.log("Fail to get nearby data: " + response.message);
+        });
   }
 
   $scope.$on('TabChange', function (event, data) {
