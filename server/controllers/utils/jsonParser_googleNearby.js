@@ -9,7 +9,7 @@
 			var raw_res_obj = JSON.parse(raw_res_str);
 			var results = raw_res_obj["results"];
 			if (results.length > 0) {
-				simplified_res["icon"] = results[0].icon;
+				// simplified_res["icon"] = results[0].icon;
 				simplified_res["location"] = [];
 			}
 

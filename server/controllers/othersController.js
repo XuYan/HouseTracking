@@ -4,7 +4,7 @@ var parser = require('./utils/jsonParser_googleNearby');
 // TODO: All these should be configurable in app setting page
 var top_n = 3; // Indicate the number of places to show at most for a specified place type
 var other_place_config = {
-	"store": 8000, /* radius = 8km */
+	"grocery_or_supermarket": 8000, /* radius = 8km */
 	"movie_theater": 8000
 };
 
@@ -60,6 +60,7 @@ module.exports = function(app, route) {
 	var other_places = {};
 
 	router.get('/', function(req, res, next) {
+		other_places = {};
 		var location = createLocationParam(req);
 		if (!location) {
 			res.status(400).send({

@@ -1,4 +1,4 @@
-houseTracking.controller('listController', function listController($scope, $http, request_creator) {
+houseTracking.controller('listController', function listController($scope, $rootScope, $http, request_creator) {
   $scope.active_index = -1;
 
 	$scope.collapse = function (event) {
@@ -34,6 +34,12 @@ houseTracking.controller('listController', function listController($scope, $http
     var data_on_map = getDataForMap(house);
   }
 
+  function addHouseData(data_for_map, house) {
+    data_for_map["house"] = {
+      "location": [{"lat": house.latitude, "lng": house.longitude}]
+    }
+  }
+
   function getDataForMap(house) {
     var url = request_creator.create("http://127.0.0.1:3000/others/", {
       longitude: house.longitude,
@@ -43,8 +49,12 @@ houseTracking.controller('listController', function listController($scope, $http
     $http.get(url)
       .then(
         function onNearbyDataObtained(response) {
-          console.log("HAHAHHA");
-          console.log(response);
+          var data_for_map = response.data; // non-house data
+          addHouseData(data_for_map, house);
+
+          $rootScope.$broadcast("onMarkerDataReady", {
+            marker_info: data_for_map
+          });
         },
         function onNearbyDataFailed(response) {
           console.log("Fail to get nearby data: " + response.message);
