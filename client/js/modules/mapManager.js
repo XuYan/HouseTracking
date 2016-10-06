@@ -16,9 +16,7 @@
     				"grocery_or_supermarket": "/resources/Store_Icon.png",
     				"house": "/resources/Home_Icon.png"
   				},
-  				addMarker: function(id, marker) {
-  					stores.marker_store[id] = marker;
-  				},
+          // Get all markers or get all route polylines based on given store_name
   				getAll: function(store_name) {
   					var objs_on_map = [];
   					var store = stores[store_name];
@@ -30,6 +28,9 @@
   					}
   					return objs_on_map;
   				},
+          saveMarker: function(id, marker) {
+            stores.marker_store[id] = marker;
+          },
   				clearMarkers: function() {
   					var markers = this.getAll("marker_store");
   					for (var i = 0; i < markers.length; i++) {
@@ -37,13 +38,26 @@
 					}
   					stores.marker_store = {};
   				},
-  				saveRouteRender: function(id, direction_renderer) {
-  					stores.route_store[id] = direction_renderer;
-  				},
+          saveRoute: function(id, polylines) {
+            stores.route_store[id] = polylines;
+          },
+          deleteRoute: function(id) {
+            var polylines_to_delete = stores.route_store[id];
+            for (var i = 0; i < polylines_to_delete.length; i++) {
+              var polyline = polylines_to_delete[i];
+              polyline.setMap(null);
+            }
+
+            delete stores.route_store[id];
+          },
   				clearRoutes: function() {
 					var routes = this.getAll("route_store");
   					for (var i = 0; i < routes.length; i++) {
-        			routes[i].setMap(null);
+              var route = routes[i];
+              for (var j = 0; j < route.length; j++) {
+                var segment = route[j];
+                segment.setMap(null);
+              }
             }
   					stores.route_store = {};
   				},
@@ -61,8 +75,17 @@
           saveRouteInfo: function(id, data) {
             route_data[id] = data;
           },
-          clearRouteData: function() {
+          getRouteInfo: function(id) {
+            return route_data[id];
+          },
+          deleteRouteInfo: function(id) {
+            delete route_data[id];
+          },
+          clearAllRouteInfo: function() {
             route_data = {};
+          },
+          getMarkerForID: function(id) {
+            return stores.marker_store[id];
           }
 			};
 		}());
