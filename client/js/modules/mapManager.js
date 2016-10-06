@@ -10,8 +10,8 @@
       var route_data = {};
 			return {
 				icons: {
-    				"Microsoft": "/resources/Google_Icon.png",
-    				"Google": "/resources/Microsoft_Icon.png",
+    				"Google": "/resources/Google_Icon.png",
+    				"Microsoft": "/resources/Microsoft_Icon.png",
     				"movie_theater": "/resources/MovieTheatre_Icon.png",
     				"grocery_or_supermarket": "/resources/Store_Icon.png",
     				"house": "/resources/Home_Icon.png"

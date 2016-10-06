@@ -63,7 +63,7 @@ houseTracking.controller('mapController', function mapController($scope, request
     },
     addAllRoutes: function(marker_info) {
       var src = this.createPoints(marker_info, "house")[0];
-      var dsts = this.createPoints(marker_info, "movie_theater", "grocery_or_supermarket");
+      var dsts = this.createPoints(marker_info, "movie_theater", "grocery_or_supermarket", "Microsoft", "Google");
 
       for (var dst_index = 0; dst_index < dsts.length; dst_index++) {
         var dst = dsts[dst_index];
@@ -195,7 +195,7 @@ houseTracking.controller('mapController', function mapController($scope, request
           var new_route_info = map_manager.getRouteInfo(info_window.route_id);
           var new_route_leg = new_route_info.routes[0].legs[0];
           info_window.setContent(getInfoWindowContent(new_route_leg.duration.text, new_route_leg.distance.text));
-        }, 500);
+        }, 200);
       });
     });
 
@@ -228,8 +228,14 @@ houseTracking.controller('mapController', function mapController($scope, request
     };
   }
 
+  function addCompanies(marker_info) {
+    marker_info["Microsoft"] = {location: [{lat: 47.639960, lng: -122.125558}]};
+    marker_info["Google"] = {location: [{lat: 47.670232, lng: -122.197222}]};
+  }
+
   $scope.$on("onMarkerDataReady", function(event, data) {
     var marker_info = data.marker_info;
+    addCompanies(marker_info);
     map_manager.addID(marker_info);
     console.log("Marker info:" + marker_info);
     
