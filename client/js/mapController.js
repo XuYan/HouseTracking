@@ -47,19 +47,22 @@ houseTracking.controller('mapController', function mapController($scope, request
       return this;
     },
     addRoute: function(src_loc, dst_loc) {
+      function onResponse(route_id) {
+        return function(response, status) {
+          if (status === 'OK') {
+            map_manager.saveRouteInfo(route_id, response);
+            map_base.renderDirectionsPolylines(route_id, response);
+          } else {
+            console.log('Directions request failed due to ' + status);
+          }
+        }
+      }
+
       this.direction_service.route({
         origin: {lat: src_loc.lat, lng: src_loc.lng},
         destination: {lat: dst_loc.lat, lng: dst_loc.lng},
         travelMode: 'DRIVING'
-      }, function(response, status) {
-        if (status === 'OK') {
-          var route_id = src_loc.id + "_" + dst_loc.id;
-          map_manager.saveRouteInfo(route_id, response);
-          map_base.renderDirectionsPolylines(route_id, response);
-        } else {
-          console.log('Directions request failed due to ' + status);
-        }
-      });
+      }, onResponse(src_loc.id + "_" + dst_loc.id));
     },
     addAllRoutes: function(marker_info) {
       var src = this.createPoints(marker_info, "house")[0];
@@ -154,12 +157,13 @@ houseTracking.controller('mapController', function mapController($scope, request
     var src_id = ids[0];
     var dest_id = ids[1];
     var info_window = map_base.info_window;
-    info_window.route_id = route_id;
-    info_window.src_marker = map_manager.getMarkerForID(src_id);
-    info_window.dest_marker = map_manager.getMarkerForID(dest_id);
 
     return function(evt) {
       console.log("polyline clicked");
+
+      info_window.route_id = route_id;
+      info_window.src_marker = map_manager.getMarkerForID(src_id);
+      info_window.dest_marker = map_manager.getMarkerForID(dest_id);
 
       info_window.setContent(getInfoWindowContent(duration, distance));
       info_window.setPosition(evt.latLng);
