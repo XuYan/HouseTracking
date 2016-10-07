@@ -22,6 +22,10 @@ var house_schema = new mongoose.Schema({
   	type: Number,
   	required: true
   },
+  link: {
+    type: String,
+    required: true
+  },
   bed_bath: {
   	type: String,
   	required: true

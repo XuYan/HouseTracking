@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	
+
 	module.exports = {
 		parse: function(xml_doc, onParseCompleted) {
 			var xml2js = require('xml2js');
@@ -13,7 +13,7 @@
 					"street": result.address[0].street[0],
 					"city": result.address[0].city[0],
 					"year": result.yearBuilt[0],
-					"price": data_obj.zestimate[0].amount[0]._, /*Return zillow estimated price */
+					"price": result.zestimate[0].amount[0]._, /*Return zillow estimated price */
   					"bed_bath": result.bedrooms[0] + " bedrooms, " + result.bathrooms[0] + " bathrooms",
   					"sqf": result.finishedSqFt[0],
   					"link": result.links[0].homedetails[0],

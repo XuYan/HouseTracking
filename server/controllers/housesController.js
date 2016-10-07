@@ -70,6 +70,7 @@ module.exports = function(app, route) {
 			"street": house_detail["street"],
 			"city": strProcessor.lowercase(house_detail["city"]),
 			"year": parseInt(house_detail["year"]),
+			"link": house_detail["link"],
 			"sqf": parseInt(house_detail["sqf"]),
 			"price": parseFloat(house_detail["price"]),
 			"bed_bath": house_detail["bed_bath"],
